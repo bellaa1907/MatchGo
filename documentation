@@ -1,0 +1,79 @@
+\documentclass[a4paper,addpoints]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts,amssymb,amsmath, amsthm}
+\usepackage{xcolor}
+\usepackage{pgf,tikz,pgfplots}
+\pgfplotsset{compat=1.15}
+\usepgfplotslibrary{fillbetween}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usetikzlibrary{calc}
+\usepackage{tabu}
+
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary {shapes , arrows , fit , calc, positioning}
+\tikzset{box/.style={draw, rectangle, rounded corners, thick, node distance =7 em, text width =6 em, text centered, minimum height =2.5 em}}
+\tikzset{line/.style={draw, thick, -latex'}}
+
+\usepackage{tikz-uml}
+\tikzumlset{actor below=0.4cm, fill usecase=white, fill class=white, text=black, draw=black}
+
+
+\begin{document}
+
+Diagramma casi d'uso MatchGo
+
+\begin{center}
+\scalebox{0.9}{%
+\begin{tikzpicture}
+    \begin{umlsystem}[x=4]{MatchGo}
+
+        \umlusecase[name=registrarsi,   x=0, y=0, width=2.3cm]{Registrarsi}
+        \umlusecase[name=visualizzare,  x=0, y=-1.7, width=2.3cm]{Visualizzare partite}
+
+        \umlusecase[name=accedere,      x=0, y=-4, width=2.3cm]{Accedere}
+        \umlusecase[name=cercare,       x=0, y=-5.7, width=2.3cm]{Cercare partite}
+        \umlusecase[name=unirsi,        x=0, y=-7.4, width=2.3cm]{Unirsi a una partita}
+        \umlusecase[name=abbandonare,   x=0, y=-9.1, width=2.3cm]{Abbandonare partita}
+        \umlusecase[name=profilo,       x=0, y=-10.8, width=2.3cm]{Gestire profilo}
+
+        \umlusecase[name=creare,        x=0, y=-13, width=2.3cm]{Creare partita}
+        \umlusecase[name=partecipanti,  x=0, y=-14.7, width=2.3cm]{Gestire partecipanti}
+        \umlusecase[name=prenotare,     x=0, y=-16.4, width=2.3cm]{Prenotare campo}
+
+        \umlusecase[name=campi,         x=6.5, y=-13, width=2.3cm]{Gestire campi}
+        \umlusecase[name=confermare,    x=6.5, y=-14.7, width=2.3cm]{Confermare prenotazione}
+        \umlusecase[name=orari,         x=6.5, y=-16.4, width=2.3cm]{Verificare orari}
+    \end{umlsystem}
+
+    \umlactor[x=0,  y=-0.85]{Visitatore}
+    \umlactor[x=0,  y=-7.4]{Giocatore}
+    \umlactor[x=0,  y=-14.7]{Organizzatore}
+    \umlactor[x=14, y=-14.7]{Gestore campo}
+
+    \umlinherit{Organizzatore}{Giocatore}
+
+    \umlassoc{Visitatore}{registrarsi}
+    \umlassoc{Visitatore}{visualizzare}
+
+    \umlassoc{Giocatore}{accedere}
+    \umlassoc{Giocatore}{cercare}
+    \umlassoc{Giocatore}{unirsi}
+    \umlassoc{Giocatore}{abbandonare}
+    \umlassoc{Giocatore}{profilo}
+
+    \umlassoc{Organizzatore}{creare}
+    \umlassoc{Organizzatore}{partecipanti}
+    \umlassoc{Organizzatore}{prenotare}
+
+    \umlassoc{Gestore campo}{campi}
+    \umlassoc{Gestore campo}{confermare}
+
+    \umlinclude{prenotare}{orari}
+\end{tikzpicture}%
+}
+\end{center}
+
+\end{document}
